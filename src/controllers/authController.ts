@@ -3,7 +3,7 @@ import { Student } from '../models/Student';
 import jwt from 'jsonwebtoken';
 import { config } from '../config/config';
 import { ILoginFormData } from '../types';
-import { generateCertificateNumber } from '../utils/certificateUtils';
+import { generateCertificateNumber, capitalizeEachWord } from '../utils/certificateUtils';
 import { generateToken, verifyToken } from '../utils/jwtUtils';
 
 // Hard-coded master credentials
@@ -127,6 +127,8 @@ export const createStudent = async (req: Request, res: Response) => {
     
     const studentData = {
       ...data,
+      courseName: capitalizeEachWord(data.courseName),
+      stream: data.stream ? capitalizeEachWord(data.stream) : '',
       certificateNo,
       fromDate: parseDate(data.fromDate),
       toDate: parseDate(data.toDate),
@@ -216,6 +218,8 @@ export const editStudent = async (req: Request, res: Response) => {
     // Prepare update data
     const studentUpdateData = {
       ...updateData,
+      courseName: updateData.courseName ? capitalizeEachWord(updateData.courseName) : undefined,
+      stream: updateData.stream ? capitalizeEachWord(updateData.stream) : undefined,
       fromDate: updateData.fromDate ? parseDate(updateData.fromDate) : existingStudent.fromDate,
       toDate: updateData.toDate ? parseDate(updateData.toDate) : existingStudent.toDate,
       dateOfCompletion: updateData.dateOfCompletion ? parseDate(updateData.dateOfCompletion) : existingStudent.dateOfCompletion

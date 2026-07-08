@@ -29,4 +29,11 @@ export function generateSequentialCertificateNumber(counter: number) {
   const formattedCounter = `D${counter.toString().padStart(4, '0')}`;
   
   return `EVXLAB/${year}/${formattedCounter}`;
+}
+
+export function capitalizeEachWord(str: string): string {
+  if (!str) return '';
+  return str
+    .toLowerCase()
+    .replace(/(?:^|\s|-|\/|\(|\.)[a-z0-9]/g, (match) => match.toUpperCase());
 } 

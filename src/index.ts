@@ -15,7 +15,7 @@ app.use(cors({
     'https://evxlab.co.in',
     'http://localhost:3000',
     'http://localhost:5173',
-    'http://localhost:8080/',
+    'http://localhost:8080',
     process.env.CLIENT_URL
   ].filter((origin): origin is string => Boolean(origin)),
   credentials: true,
@@ -32,7 +32,7 @@ app.use((req, res, next) => {
     'https://evxlab.co.in',
     'http://localhost:3000',
     'http://localhost:5173',
-    'http://localhost:8080/',
+    'http://localhost:8080',
     process.env.CLIENT_URL
   ].filter((origin): origin is string => Boolean(origin));
   
